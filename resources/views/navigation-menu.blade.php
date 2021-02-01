@@ -6,7 +6,8 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                        <img src="{{ url('img/Lambang_Kabupaten_Batang.png') }}" class="block h-9 w-auto">
                     </a>
                 </div>
 
@@ -16,6 +17,12 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('inputs.index') }}" :active="request()->routeIs('inputs.index')">
+                        {{ __('Input') }}
+                    </x-jet-nav-link>
+                </div>
+             
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

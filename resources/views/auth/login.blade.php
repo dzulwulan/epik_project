@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <img src="{{ url('img/Lambang_Kabupaten_Batang.png') }}" class="block w-16 md:w-32 lg:w-48">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -37,6 +37,9 @@
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
+                @endif
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                 @endif
 
                 <x-jet-button class="ml-4">
