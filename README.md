@@ -1,2 +1,3 @@
 # epik_project
-this is my first project using laravel. wish this project can be finished greatly 
+Project untuk validasi dan restorasi surat kecamatan blado
+Menggunakan php dengan framework laravel 8 dan tailwind
