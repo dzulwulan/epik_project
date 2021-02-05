@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title','Input Surat Baru')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Input Validasi Surat Baru') }}
@@ -20,8 +21,8 @@
                             </div>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="#" method="POST">
-                            @csrf
+                            <form action="#" method="Post">
+                                @csrf
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                                         <div class="col-span-6 sm:col-span-3">
@@ -33,30 +34,19 @@
                                                 <option>Surat Domisili</option>
                                             </select>
                                         </div>
-
-                                        <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                                <div class="col-span-6 sm:col-span-3">
-                                                    <label for="first_name"
-                                                        class="block text-sm font-medium text-gray-700">Nama
-                                                        Pemohon</label>
-                                                    <input type="text" name="first_name" id="first_name"
-                                                        autocomplete="given-name"
-                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label for="about" class="block text-sm font-medium text-gray-700">
+                                    </div>
+                                    <x-input_text field="name" label="Nama Pemohon"/>
+                                    <x-input_text field="nik" label="NIK"/>
+                                    <x-input_text field="pekerjaan" label="Pekerjaan"/>
+                                        <div class="shadow sm:rounded-md sm:overflow-hidden">
+                                            <label for="alamat" class="block text-sm font-medium text-gray-700">
                                                 Alamat
                                             </label>
                                             <div class="mt-1">
-                                                <textarea id="about" name="about" rows="3"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
-                                                    placeholder="alamat"></textarea>
+                                                <textarea id="alamat" name="alamat" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="alamat"></textarea>
                                             </div>
                                         </div>
+                                        <x-input_text field="keperluan" label="Keperluan"/>
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700">
                                                 Upload file surat
