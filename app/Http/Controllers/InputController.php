@@ -38,7 +38,6 @@ class InputController extends Controller
      */
     public function store(Request $request)
     {
-    //    dd($request);
         $request->validate([
             'jenis_surat'=> 'required |' ,
             'name'=>'required',
@@ -48,7 +47,7 @@ class InputController extends Controller
             'keperluan'=>'required',
             'file_path' => 'file|mimes:doc,docx,txt,pdf,zip',
         ]);
-        // dd($request->file_path);
+        // dd($request->tgl_lhr);
         $fileName=$request->file_path->getClientOriginalName().'-'. time().'.'.$request->file_path->extension();
         $request->file_path->move(public_path('file'), $fileName);
         Surat::create([
@@ -58,7 +57,7 @@ class InputController extends Controller
             'nik'=>$request->nik,
             'jenis_kelamin'=>$request->gender,
             'tempat_lhr'=>$request->tempat_lahir,
-            'tgl_lahir'=>$request->tgl_lhr,
+            'tgl_lhr'=>$request->tgl_lhr,
             'agama'=>$request->agama,
             'warga_negara'=>$request->nasionaliti,
             'pekerjaan'=>$request->pekerjaan,
