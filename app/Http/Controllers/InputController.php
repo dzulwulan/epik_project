@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Surat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Str;
 
 class InputController extends Controller
 {
@@ -34,7 +38,39 @@ class InputController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //    dd($request);
+        $request->validate([
+            'jenis_surat'=> 'required |' ,
+            'name'=>'required',
+            'nik'=>'required',
+            'agama'=>'required',
+            'alamat'=>'required',
+            'keperluan'=>'required',
+            'file_path' => 'file|mimes:doc,docx,txt,pdf,zip',
+        ]);
+        // dd($request->file_path);
+        $fileName=$request->file_path->getClientOriginalName().'-'. time().'.'.$request->file_path->extension();
+        $request->file_path->move(public_path('file'), $fileName);
+        Surat::create([
+            'no_regis'=>'null',
+            'jenis_surat'=> $request ->jenis_surat,
+            'name'=>$request->name,
+            'nik'=>$request->nik,
+            'jenis_kelamin'=>$request->gender,
+            'tempat_lhr'=>$request->tempat_lahir,
+            'tgl_lahir'=>$request->tgl_lhr,
+            'agama'=>$request->agama,
+            'warga_negara'=>$request->nasionaliti,
+            'pekerjaan'=>$request->pekerjaan,
+            'alamat'=>$request->alamat,
+            'keperluan'=>$request->keperluan,
+            'created_by'=>Auth::user()->id,
+            'status'=>'BELUM DIVERIFIKASI',
+            'file_path'=>$fileName,
+
+        ]);
+        return redirect()->back()->with('message', 'IT WORKS!');
+
     }
 
     /**

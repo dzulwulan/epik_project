@@ -17,8 +17,7 @@
                 <label for="file-upload"
                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                     <span>Upload a file</span>
-                    <input id="file-upload" name="file-upload" type="file"
-                        class="sr-only">
+                    <input  type="file" id="file-upload" name="file_path"  class="sr-only">
                 </label>
                 <p class="pl-1">atau drag dan drop</p>
             </div>
@@ -27,5 +26,4 @@
             </p>
         </div>
     </div>
-</div>
 </div>

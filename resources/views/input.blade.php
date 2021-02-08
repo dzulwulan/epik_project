@@ -21,8 +21,23 @@
                             </div>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="#" method="Post">
+                            @if ($errors->any())
+                                <div class="bg-red-200 relative text-red-500 py-3 px-3 rounded-lg">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @if(session()->has('message'))
+                                <div class="bg-yellow-200 relative text-yellow-600 py-3 px-3 rounded-lg">
+                                    {{ session()->get('message') }}
+                                </div>
+                            @endif
+                            <form action="/inputs" method="post" enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="shadow sm:rounded-md sm:overflow-hidden">
                                         <div class="col-span-6 sm:col-span-3">
