@@ -18,8 +18,13 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('inputs.create') }}" :active="request()->routeIs('inputs.create')">
+                        {{ __('Surat Baru') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('inputs.index') }}" :active="request()->routeIs('inputs.index')">
-                        {{ __('Input') }}
+                        {{ __('Daftar Surat') }}
                     </x-jet-nav-link>
                 </div>
              
