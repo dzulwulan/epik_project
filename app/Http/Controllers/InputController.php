@@ -84,7 +84,8 @@ class InputController extends Controller
      */
     public function show($id)
     {
-        //
+        $surat=Surat::find($id);
+        return view('details',compact('surat'));
     }
 
     /**
@@ -119,5 +120,10 @@ class InputController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function download($filepath)
+    {
+        // $pathoffile = storage_path('public/file/' . $filepath);
+        return Storage::download($filepath);
     }
 }
