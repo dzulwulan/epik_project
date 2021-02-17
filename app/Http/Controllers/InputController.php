@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
+use Response;
 use App\Models\Surat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class InputController extends Controller
 {
@@ -16,6 +17,10 @@ class InputController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
     public function index()
     {
         $id=Auth::user()->id;
@@ -52,7 +57,7 @@ class InputController extends Controller
             'file_path' => 'file|mimes:doc,docx,txt,pdf,zip',
         ]);
         // dd($request->tgl_lhr);
-        $fileName=$request->file_path->getClientOriginalName().'-'. time().'.'.$request->file_path->extension();
+        $fileName=$request->file_path->getClientOriginalName() . '-' . time() .'.'. $request->file_path->extension();
         $request->file_path->move(public_path('file'), $fileName);
         Surat::create([
             'no_regis'=>'null',
@@ -123,7 +128,17 @@ class InputController extends Controller
     }
     public function download($filepath)
     {
-        // $pathoffile = storage_path('public/file/' . $filepath);
-        return Storage::download($filepath);
+        // $filepath = surat::find($id);
+        // return Storage::download($filepath->file_path);
+        // dd($id);
+        $file = public_path()."/file/$filepath";
+        $headers = array('Content-Type: application/pdf',);
+        return response()->download($file, $filepath,$headers);
     }
+   /**
+     * find spesific file to download.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 }

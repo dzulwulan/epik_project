@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/inputs/download', [InputController::class, 'download'])->name('inputs.download');
+Route::get('/inputs/{filepath}/download', [InputController::class, 'download'])->name('inputs.download');
 Route::resource('inputs', InputController::class);
 
 

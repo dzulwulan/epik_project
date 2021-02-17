@@ -121,7 +121,7 @@
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                <a href="{{ route('inputs.download', $surat->file_path) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
                                                     Download
                                                 </a>
                                             </div>
