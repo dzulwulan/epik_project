@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\User\InputController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InputController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,15 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::get('/inputs/{filepath}/download', [InputController::class, 'download'])->name('inputs.download');
-Route::resource('inputs', InputController::class);
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['middleware' => 'role:user', 'prefix' => 'user', 'as' => 'user.'], function() {
+        Route::get('/inputs/{filepath}/download', [InputController::class, 'download'])->name('inputs.download');
+        Route::resource('inputs', App\Http\Controllers\User\InputController::class);
+    });
+    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::resource('validate', \App\Http\Controllers\Admin\ValidationController::class);
+    });
+});
 
 

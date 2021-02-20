@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\User;
+use App\Http\Controllers\Controller;
 use Response;
 use App\Models\Surat;
 use Illuminate\Http\Request;
@@ -17,10 +17,6 @@ class InputController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-        $this->middleware('auth:sanctum');
-    }
     public function index()
     {
         $id=Auth::user()->id;

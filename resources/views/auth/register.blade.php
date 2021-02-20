@@ -6,11 +6,11 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" x-data="{role_id: 1}">
             @csrf
 
             <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
+                <x-jet-label for="name" value="{{ __('Nama') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
@@ -25,8 +25,24 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-jet-label for="password_confirmation" value="{{ __('Konfirmasi Password') }}" />
                 <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="role_id" value="{{ __('Daftar sebagai:') }}" />
+                <select name="role_id" x-model="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="1">Administrator</option>
+                    <option value="2">User</option>
+                </select>
+            </div>
+            <div class="mt-4" x-show="role_id == 1">
+                <x-jet-label for="jabatan" value="{{ __('Jabatan') }}" />
+                <x-jet-input id="jabatan" class="block mt-1 w-full" type="text" :value="old('jabatan')" name="jabatan" />
+            </div>
+            <div class="mt-4" x-show="role_id == 2">
+                <x-jet-label for="desa" value="{{ __('Desa') }}" />
+                <x-jet-input id="desa" class="block mt-1 w-full" type="text" :value="old('desa')" name="desa" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

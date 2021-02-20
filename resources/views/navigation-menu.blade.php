@@ -17,16 +17,23 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
+                @if (auth()->user()->role_id == 2)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('inputs.create') }}" :active="request()->routeIs('inputs.create')">
+                    <x-jet-nav-link href="{{ route('user.inputs.create') }}" :active="request()->routeIs('user.inputs.create')">
                         {{ __('Surat Baru') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('inputs.index') }}" :active="request()->routeIs('inputs.index')">
+                    <x-jet-nav-link href="{{ route('user.inputs.index') }}" :active="request()->routeIs('user.inputs.index')">
                         {{ __('Daftar Surat') }}
                     </x-jet-nav-link>
                 </div>
+                @endif
+                @if (auth()->user()->role_id == 1)
+                        <x-jet-nav-link href="{{ route('admin.validate.index') }}" :active="request()->routeIs('admin.validate.index')">
+                            {{ __('List Validasi') }}
+                        </x-jet-nav-link>
+                 @endif
              
             </div>
 
