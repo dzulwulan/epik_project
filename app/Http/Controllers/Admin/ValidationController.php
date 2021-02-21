@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Surat;
+use Illuminate\Support\Facades\DB;
 class ValidationController extends Controller
 {
     /**
@@ -14,7 +15,8 @@ class ValidationController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $surats = Surat::paginate(1);
+        return view('admin.index')->with('surats', $surats);
     }
 
     /**
@@ -57,7 +59,8 @@ class ValidationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $surat=Surat::find($id);
+        return view('admin.validate',compact('surat'));
     }
 
     /**

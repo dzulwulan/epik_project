@@ -100,6 +100,14 @@
                                   {{$surat->status}}
                                 </dd>
                               </div>
+                              <div class="bg-white-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                  No Registrasi
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                  {{$surat->no_regis}}
+                                </dd>
+                              </div>
                             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500">
                                     Attachments
@@ -121,7 +129,7 @@
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="{{ route('user.inputs.download', $surat->file_path) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                                                {{-- <a href="{{ route('inputs.download', $surat->file_path) }}" class="font-medium text-indigo-600 hover:text-indigo-500"> --}}
                                                     Download
                                                 </a>
                                             </div>
@@ -129,8 +137,17 @@
                                     </ul>
                                 </dd>
                             </div>
+                            <div>
+                                <button class="mr-5 bg-green-600  hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
+                                    Verifikasi
+                                </button>
+                            </div>
+                            
                         </dl>
+
+                        
                     </div>
+                    
                 </div>
 
 
