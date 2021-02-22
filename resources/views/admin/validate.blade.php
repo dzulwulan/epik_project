@@ -129,7 +129,7 @@
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                {{-- <a href="{{ route('inputs.download', $surat->file_path) }}" class="font-medium text-indigo-600 hover:text-indigo-500"> --}}
+                                                <a href="{{ route('admin.validate.download', $surat->file_path) }}" class="font-medium text-indigo-600 hover:text-indigo-500">
                                                     Download
                                                 </a>
                                             </div>
@@ -138,20 +138,61 @@
                                 </dd>
                             </div>
                             <div>
-                                <button class="mr-5 bg-green-600  hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
-                                    Verifikasi
-                                </button>
+                                <button class="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" onclick="toggleModal('modal-id')">
+                                    Open regular modal
+                                  </button>
+                                  <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="modal-id">
+                                    <div class="relative w-auto my-6 mx-auto max-w-3xl">
+                                      <!--content-->
+                                      <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                        <!--header-->
+                                        <div class="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                                          <h3 class="text-3xl font-semibold">
+                                            Validasi Surat
+                                          </h3>
+                                          <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('modal-id')">
+                                            <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                              X
+                                            </span>
+                                          </button>
+                                        </div>
+                                        <!--body-->
+                                        <div class="relative p-6 flex-auto">
+                                          <form class="pt-6 pb-6 my-8 leading-relaxed" action="" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                                                <x-input_text field="no_regis" label="No registrasi" placeholder="{{$surat->no_regis}}" />
+                                                <x-upload_file />
+                                            </div>
+                                        </div>
+                                        <!--footer-->
+                                        <div class="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                                          <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" onclick="toggleModal('modal-id')">
+                                            Close
+                                          </button>
+                                          <button class="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" type="button" style="transition: all .15s ease" onclick="toggleModal('modal-id')">
+                                            Save Changes
+                                          </button>
+                                        </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
                             </div>
-                            
-                        </dl>
-
-                        
-                    </div>
-                    
+                        </dl>        
+                    </div>              
                 </div>
-
-
             </div>
         </div>
     </div>
 </x-app-layout>
+<script type="text/javascript">
+    function toggleModal(modalID){
+      document.getElementById(modalID).classList.toggle("hidden");
+      document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+      document.getElementById(modalID).classList.toggle("flex");
+      document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+    }
+  </script>

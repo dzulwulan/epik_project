@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('inputs', App\Http\Controllers\User\InputController::class);
     });
     Route::group(['middleware' => 'role:admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+        Route::get('/validate/{filepath}/download', [InputController::class, 'download'])->name('validate.download');
         Route::resource('validate', \App\Http\Controllers\Admin\ValidationController::class);
     });
 });

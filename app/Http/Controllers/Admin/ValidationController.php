@@ -85,4 +85,19 @@ class ValidationController extends Controller
     {
         //
     }
+    public function download($filepath)
+    {
+        // $filepath = surat::find($id);
+        // return Storage::download($filepath->file_path);
+        // dd($id);
+        $file = public_path()."/file/$filepath";
+        $headers = array('Content-Type: application/pdf',);
+        return response()->download($file, $filepath,$headers);
+    }
+   /**
+     * find spesific file to download.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 }
